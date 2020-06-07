@@ -11,11 +11,12 @@ const config = {
   messagingSenderId: "343442298780",
   appId: "1:343442298780:web:2a5c6b5dd2b82d79851a59",
 };
-
+//! Takes off user data from object Auth library created at Google sign in to store into our database.
 export const createUserProfileDocument = async (userAuth, additionalData) => {
   if (!userAuth) return;
 
-  const userRef = firestore.doc(`users/${userAuth.iud}`);
+  const userRef = firestore.doc(`users/${userAuth.uid}`); //userAuth is the object
+
   const snapShot = await userRef.get();
 
   if (!snapShot.exists) {
